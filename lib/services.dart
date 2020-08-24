@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 Future<DateTime> showDateTimePicker({
   @required BuildContext context,
-  @required DateTime initialDate,
-  @required DateTime firstDate,
-  @required DateTime lastDate,
+  DateTime initialDate,
+  DateTime firstDate,
+  DateTime lastDate,
   DateTime currentDate,
   DatePickerEntryMode initialDatePickerEntryMode = DatePickerEntryMode.calendar,
   TimePickerEntryMode initialTimePickerEntryMode = TimePickerEntryMode.dial,

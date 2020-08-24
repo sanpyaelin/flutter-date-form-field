@@ -1,6 +1,8 @@
 # date_form_field
 
 <a href="https://pub.dev/packages/bloc"><img src="https://img.shields.io/pub/v/bloc.svg" alt="Pub"></a>
+[![codecov](https://codecov.io/gh/sanpyaelin/datetime_picker_formfield/branch/master/graph/badge.svg)](https://codecov.io/gh/sanpyaelin/datetime_picker_formfield)
+
 DateFormField wraps a TextField and integrates it with the enclosing Form. This provides additional functionality, such as validation and integration with other FormField widgets.
 
 ## Getting Started 
@@ -9,8 +11,9 @@ Add this to your package's pubspec.yaml file:
 
 ```yml
 dependencies:
-  location: ^3.0.0
+  location: ^0.0.1
 ```
+
 ## Usage
 
 import package
@@ -37,7 +40,8 @@ Future<DateTime> showPicker() async {
     return date;
 }
 ```
-For Initial data, Can be use ```initialDate(DateTime)``` or ```initialValue(String)```;
+For Initial data, Can be use ```initialDate```(datetype DateTime) or ```initialValue```(datetype String)
+
 Other properties are same as ```TextFormField```
 
 ```dart
@@ -59,7 +63,7 @@ DateFormField(
         return null;
     },
     decoration: InputDecoration(
-        labelText: 'To',
+        labelText: 'Date',
         suffixIcon: Icon(
         Icons.event,
         ),
@@ -68,11 +72,52 @@ DateFormField(
 
 ```
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## showDateTimePicker function
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+```dart
+Future<DateTime> showDateTimePicker({
+  @required BuildContext context,
+  DateTime initialDate,
+  DateTime firstDate,
+  DateTime lastDate,
+  DateTime currentDate,
+  DatePickerEntryMode initialDatePickerEntryMode: DatePickerEntryMode.calendar,
+  TimePickerEntryMode initialTimePickerEntryMode: TimePickerEntryMode.dial,
+  SelectableDayPredicate selectableDayPredicate,
+  String helpText,
+  String cancelText,
+  String confirmText,
+  Locale locale,
+  bool useRootNavigator: true,
+  RouteSettings routeSettings,
+  TextDirection textDirection,
+  TransitionBuilder builder,
+  DatePickerMode initialDatePickerMode: DatePickerMode.day,
+  String errorFormatText,
+  String errorInvalidText,
+  String fieldHintText,
+  String fieldLabelText,
+})
+```
+
+## showDateTimePicker usage
+
+```dart
+DateFormField(
+    showPicker: showPicker,
+    onDateChanged: (DateTime date) {
+        // your code
+    },
+)
+
+Future<DateTime> showPicker() async {
+    DateTime date = await showDateTimePicker(
+      context: context,
+      initialDate: firstDate,
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
+
+    return date;
+}
+```
