@@ -1,6 +1,6 @@
 name: date_form_field
-description: A new Flutter package project.
-version: 0.0.1
+description: DateFormField wraps a TextField and integrates it with the enclosing Form. This provides additional functionality, such as validation and integration with other FormField widgets.
+version: 0.0.2
 repository: https://github.com/sanpyaelin/flutter-date-form-field
 
 environment:

@@ -1,12 +1,13 @@
 # date_form_field
 
+<img src="https://raw.githubusercontent.com/sanpyaelin/flutter-date-form-field/master/demo/screenshot.gif" alt="Demo App" style="margin:auto" height="500">
+
 <a href="https://pub.dev/packages/date_form_field"><img src="https://img.shields.io/pub/v/date_form_field.svg" alt="Pub"></a>
+<a href="https://github.com/hacktons/convex_bottom_bar"><img src="https://img.shields.io/badge/platform-flutter-ff69b4.svg" alt="github"></a>
+<a href="https://github.com/sanpyaelin/flutter-date-form-field/blob/master/LICENSE"><img src="https://img.shields.io/github/license/sanpyaelin/flutter-date-form-field.svg" alt="license"></a>
 
 DateFormField wraps a TextField and integrates it with the enclosing Form. This provides additional functionality, such as validation and integration with other FormField widgets.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/sanpyaelin/sanpyaelin/flutter-date-form-field/master/demo/screenshot.gif" alt="Demo App" style="margin:auto" width="372" height="686">
-</p>
 
 ## Getting Started 
 
@@ -14,7 +15,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yml
 dependencies:
-  date_form_field: ^0.0.1
+  date_form_field: ^0.0.2
 ```
 
 ## Usage
@@ -43,15 +44,13 @@ Future<DateTime> showPicker() async {
     return date;
 }
 ```
-For Initial data, Can be use ```initialDate```(datetype DateTime) or ```initialValue```(datetype String)
 
-Other properties are same as ```TextFormField```
+More complete example:
 
 ```dart
 DateFormField(
-    initialDate: new DateTime.now(), // datatype DateTime
-    initialValue: new DateTime.now().toString(),  // datatype String 
-    showPicker: showPicker,
+    format: 'd/MM/yyyy h:mm a',
+    initialValue: new DateTime.now().toString(),  
     onSaved: (String dateStr) {
         // your code
     },
@@ -71,11 +70,40 @@ DateFormField(
         Icons.event,
         ),
     ),
+    showPicker: () {
+        return showDateTimePicker(
+          context: context,
+        );
+    },
 )
 
 ```
 
-## showDateTimePicker function
+
+## showDateTimePicker 
+
+### usage
+```dart
+DateFormField(
+    showPicker: showPicker,
+    onDateChanged: (DateTime date) {
+        // your code
+    },
+)
+
+Future<DateTime> showPicker() async {
+    DateTime date = await showDateTimePicker(
+      context: context,       // required
+      initialDate: firstDate, // optional
+      firstDate: firstDate,   // optional
+      lastDate: lastDate,     // optional
+    );
+
+    return date;
+}
+```
+
+### function
 
 ```dart
 Future<DateTime> showDateTimePicker({
@@ -101,26 +129,4 @@ Future<DateTime> showDateTimePicker({
   String fieldHintText,
   String fieldLabelText,
 })
-```
-
-## showDateTimePicker usage
-
-```dart
-DateFormField(
-    showPicker: showPicker,
-    onDateChanged: (DateTime date) {
-        // your code
-    },
-)
-
-Future<DateTime> showPicker() async {
-    DateTime date = await showDateTimePicker(
-      context: context,
-      initialDate: firstDate,
-      firstDate: firstDate,
-      lastDate: lastDate,
-    );
-
-    return date;
-}
 ```
