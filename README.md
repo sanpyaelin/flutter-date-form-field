@@ -1,9 +1,12 @@
 # date_form_field
 
-<a href="https://pub.dev/packages/bloc"><img src="https://img.shields.io/pub/v/bloc.svg" alt="Pub"></a>
-[![codecov](https://codecov.io/gh/sanpyaelin/datetime_picker_formfield/branch/master/graph/badge.svg)](https://codecov.io/gh/sanpyaelin/datetime_picker_formfield)
+<a href="https://pub.dev/packages/date_form_field"><img src="https://img.shields.io/pub/v/date_form_field.svg" alt="Pub"></a>
 
 DateFormField wraps a TextField and integrates it with the enclosing Form. This provides additional functionality, such as validation and integration with other FormField widgets.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sanpyaelin/sanpyaelin/flutter-date-form-field/master/demo/screenshot.gif" alt="Demo App" style="margin:auto" width="372" height="686">
+</p>
 
 ## Getting Started 
 
@@ -11,7 +14,7 @@ Add this to your package's pubspec.yaml file:
 
 ```yml
 dependencies:
-  location: ^0.0.1
+  date_form_field: ^0.0.1
 ```
 
 ## Usage
