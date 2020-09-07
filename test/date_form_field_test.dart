@@ -4,10 +4,9 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:date_form_field/date_form_field.dart';
 
-
-
 void main() {
-  testWidgets('Passes textAlign to underlying TextField', (WidgetTester tester) async {
+  testWidgets('Passes textAlign to underlying TextField',
+      (WidgetTester tester) async {
     const TextAlign alignment = TextAlign.center;
 
     await tester.pumpWidget(
@@ -29,7 +28,8 @@ void main() {
     expect(textFieldWidget.textAlign, alignment);
   });
 
-  testWidgets('Passes scrollPhysics to underlying TextField', (WidgetTester tester) async {
+  testWidgets('Passes scrollPhysics to underlying TextField',
+      (WidgetTester tester) async {
     const ScrollPhysics scrollPhysics = ScrollPhysics();
 
     await tester.pumpWidget(
@@ -51,7 +51,8 @@ void main() {
     expect(textFieldWidget.scrollPhysics, scrollPhysics);
   });
 
-  testWidgets('Passes textAlignVertical to underlying TextField', (WidgetTester tester) async {
+  testWidgets('Passes textAlignVertical to underlying TextField',
+      (WidgetTester tester) async {
     const TextAlignVertical textAlignVertical = TextAlignVertical.bottom;
 
     await tester.pumpWidget(
@@ -73,7 +74,8 @@ void main() {
     expect(textFieldWidget.textAlignVertical, textAlignVertical);
   });
 
-  testWidgets('Passes textInputAction to underlying TextField', (WidgetTester tester) async {
+  testWidgets('Passes textInputAction to underlying TextField',
+      (WidgetTester tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Material(
@@ -93,8 +95,9 @@ void main() {
     expect(textFieldWidget.textInputAction, TextInputAction.next);
   });
 
-  testWidgets('Passes onEditingComplete to underlying TextField', (WidgetTester tester) async {
-    final VoidCallback onEditingComplete = () { };
+  testWidgets('Passes onEditingComplete to underlying TextField',
+      (WidgetTester tester) async {
+    final VoidCallback onEditingComplete = () {};
 
     await tester.pumpWidget(
       MaterialApp(
@@ -115,7 +118,8 @@ void main() {
     expect(textFieldWidget.onEditingComplete, onEditingComplete);
   });
 
-  testWidgets('Passes cursor attributes to underlying TextField', (WidgetTester tester) async {
+  testWidgets('Passes cursor attributes to underlying TextField',
+      (WidgetTester tester) async {
     const double cursorWidth = 3.14;
     const Radius cursorRadius = Radius.circular(4);
     const Color cursorColor = Colors.purple;
@@ -143,7 +147,8 @@ void main() {
     expect(textFieldWidget.cursorColor, cursorColor);
   });
 
-  testWidgets('onFieldSubmit callbacks are called', (WidgetTester tester) async {
+  testWidgets('onFieldSubmit callbacks are called',
+      (WidgetTester tester) async {
     bool _called = false;
 
     await tester.pumpWidget(
@@ -151,7 +156,9 @@ void main() {
         home: Material(
           child: Center(
             child: DateFormField(
-              onFieldSubmitted: (String value) { _called = true; },
+              onFieldSubmitted: (String value) {
+                _called = true;
+              },
             ),
           ),
         ),
@@ -211,7 +218,8 @@ void main() {
     expect(_validateCalled, 2);
   });
 
-  testWidgets('validate is called if widget is enabled', (WidgetTester tester) async {
+  testWidgets('validate is called if widget is enabled',
+      (WidgetTester tester) async {
     int _validateCalled = 0;
 
     await tester.pumpWidget(
@@ -237,8 +245,8 @@ void main() {
     expect(_validateCalled, 2);
   });
 
-
-  testWidgets('Disabled field hides helper and counter', (WidgetTester tester) async {
+  testWidgets('Disabled field hides helper and counter',
+      (WidgetTester tester) async {
     const String helperText = 'helper text';
     const String counterText = 'counter text';
     const String errorText = 'error text';
@@ -285,13 +293,17 @@ void main() {
     expect(errorWidget.style.color, equals(Colors.transparent));
   });
 
-  testWidgets('passing a buildCounter shows returned widget', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: Material(
-        child: Center(
+  testWidgets('passing a buildCounter shows returned widget',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Material(
+          child: Center(
             child: DateFormField(
-              buildCounter: (BuildContext context, { int currentLength, int maxLength, bool isFocused }) {
-                return Text('${currentLength.toString()} of ${maxLength.toString()}');
+              buildCounter: (BuildContext context,
+                  {int currentLength, int maxLength, bool isFocused}) {
+                return Text(
+                    '${currentLength.toString()} of ${maxLength.toString()}');
               },
               maxLength: 10,
             ),
@@ -336,22 +348,22 @@ void main() {
   });
 
   // Regression test for https://github.com/flutter/flutter/issues/54472.
-  testWidgets('reset resets the text fields value to the initialValue', (WidgetTester tester) async {
-    await tester.pumpWidget(
-        MaterialApp(
-          home: Material(
-            child: Center(
-              child: DateFormField(
-                initialValue: 'initialValue',
-              ),
-            ),
+  testWidgets('reset resets the text fields value to the initialValue',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Material(
+        child: Center(
+          child: DateFormField(
+            initialValue: 'initialValue',
           ),
-        )
-    );
+        ),
+      ),
+    ));
 
     await tester.enterText(find.byType(DateFormField), 'changedValue');
 
-    final FormFieldState<String> state = tester.state<FormFieldState<String>>(find.byType(DateFormField));
+    final FormFieldState<String> state =
+        tester.state<FormFieldState<String>>(find.byType(DateFormField));
     state.reset();
 
     expect(find.text('changedValue'), findsNothing);
@@ -359,22 +371,22 @@ void main() {
   });
 
   // Regression test for https://github.com/flutter/flutter/issues/54472.
-  testWidgets('didChange changes text fields value', (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Material(
-          child: Center(
-            child: DateFormField(
-              initialValue: 'initialValue',
-            ),
+  testWidgets('didChange changes text fields value',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(
+      home: Material(
+        child: Center(
+          child: DateFormField(
+            initialValue: 'initialValue',
           ),
         ),
-      )
-    );
+      ),
+    ));
 
     expect(find.text('initialValue'), findsOneWidget);
 
-    final FormFieldState<String> state = tester.state<FormFieldState<String>>(find.byType(DateFormField));
+    final FormFieldState<String> state =
+        tester.state<FormFieldState<String>>(find.byType(DateFormField));
     state.didChange('changedValue');
 
     expect(find.text('initialValue'), findsNothing);
@@ -395,6 +407,7 @@ void main() {
     );
 
     final TextField widget = tester.widget(find.byType(TextField));
-    expect(widget.autofillHints, equals(const <String>[AutofillHints.countryName]));
+    expect(widget.autofillHints,
+        equals(const <String>[AutofillHints.countryName]));
   });
 }

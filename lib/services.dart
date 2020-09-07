@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 DateTime time2Date(TimeOfDay time) {
   return DateTime(time.hour, time.minute);
 }
@@ -10,17 +9,11 @@ String time2DateStr(TimeOfDay time) {
 }
 
 TimeOfDay date2Time(DateTime date) {
-  return TimeOfDay(
-    hour: date.hour,
-    minute: date.minute
-  );
+  return TimeOfDay(hour: date.hour, minute: date.minute);
 }
 
 String date2TimeStr(DateTime date) {
-  return TimeOfDay(
-    hour: date.hour,
-    minute: date.minute
-  ).toString();
+  return TimeOfDay(hour: date.hour, minute: date.minute).toString();
 }
 
 Future<DateTime> showDateTimePicker({
